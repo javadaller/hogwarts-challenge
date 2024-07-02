@@ -1,1 +1,11 @@
 @use "../extends/_extends_dir";
+
+header {
+    @include flex(row,space-between,center);
+    margin: 0 5%;
+
+    nav {
+        @include flex(row,space-between,center);
+        width:120px;
+    }
+}

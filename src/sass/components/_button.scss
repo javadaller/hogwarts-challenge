@@ -1,0 +1,6 @@
+.button {
+    @extend .pointer;
+}
+.button:hover {
+    transform: scale(110%);
+}

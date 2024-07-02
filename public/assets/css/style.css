@@ -546,7 +546,7 @@ html[data-theme="dark"] {
 
 @font-face {
   font-family: "Ubuntu";
-  src: url("../../../public/fonts/Ubuntu_Sans/static/UbuntuSans-Regular.ttf") format("truetype");
+  src: url("../fonts/Ubuntu_Sans/static/UbuntuSans-Regular.ttf") format("truetype");
 }
 .flexCenterCenter {
   display: flex;
@@ -630,12 +630,52 @@ html[data-theme="dark"] {
   background-size: cover;
 }
 
-.pointer {
+.pointer, .button {
   cursor: pointer;
   transition: 0.3s;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5%;
+}
+header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+}
+
+.button:hover {
+  transform: scale(110%);
 }
 
 body {
   color: white;
   background-color: black;
+  font-family: Ubuntu;
+  cursor: url("../images/icons/wand-sparkles.svg"), auto;
+  overflow: hidden;
+  height: 100dvh;
+}
+body canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+header {
+  height: 15dvh;
+}
+
+main {
+  height: 75dvh;
+}
+
+footer {
+  height: 10dvh;
 }/*# sourceMappingURL=style.css.map */
