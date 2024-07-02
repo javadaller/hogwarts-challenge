@@ -633,4 +633,9 @@ html[data-theme="dark"] {
 .pointer {
   cursor: pointer;
   transition: 0.3s;
+}
+
+body {
+  color: white;
+  background-color: black;
 }/*# sourceMappingURL=style.css.map */
