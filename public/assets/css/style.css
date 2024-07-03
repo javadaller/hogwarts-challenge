@@ -329,6 +329,36 @@ template {
   display: none;
 }
 
+.fadOut {
+  animation: fadeOut 0.3s linear forwards;
+  opacity: 1;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+.fadeIn {
+  animation: fadeIn 0.3s linear forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
 .fromLeft {
   opacity: 0;
   animation: fromLeft 0.5s 0.5s linear forwards;
@@ -515,8 +545,8 @@ template {
   }
 }
 :root {
-  --background:#111827;
-  --text:#e5e7eb;
+  --background:black;
+  --text:white;
 }
 
 /*html[data-theme="light"] {
@@ -548,6 +578,141 @@ html[data-theme="dark"] {
   font-family: "Ubuntu";
   src: url("../fonts/Ubuntu_Sans/static/UbuntuSans-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Harry";
+  src: url("../fonts/HARRYP__.TTF") format("truetype");
+}
+@font-face {
+  font-family: "Lumos";
+  src: url("../fonts/LUMOS.TTF") format("truetype");
+}
+@font-face {
+  font-family: "Magic1";
+  src: url("../fonts/MagicSchoolOne.ttf") format("truetype");
+}
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5%;
+}
+footer #socials {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+footer #socials img {
+  height: 40px;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+main section {
+  width: 100%;
+  height: 100%;
+}
+main #mainRooms #mainNav {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+}
+main #mainRooms #mainNav #roomLeft {
+  height: 70px;
+  transform: rotate(-90deg);
+  z-index: 1;
+}
+main #mainRooms #mainNav #roomLeft:hover {
+  transform: rotate(-90deg) scale(110%);
+  filter: sepia(150%);
+}
+main #mainRooms #mainNav #selectedHouse {
+  height: 100%;
+  margin: 0 25px;
+  filter: invert(100%);
+}
+main #mainRooms #mainNav #roomRight {
+  height: 70px;
+  transform: rotate(90deg);
+  z-index: 1;
+}
+main #mainRooms #mainNav #roomRight:hover {
+  transform: rotate(90deg) scale(110%);
+  filter: sepia(150%);
+}
+main #mainLogin #mainLoginBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main #mainLogin #mainLoginBox #loginForm {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main #mainLogin #mainLoginBox #loginForm input {
+  z-index: 1;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  padding: 5px;
+}
+main #mainLogin #mainLoginBox #loginForm #loginButton {
+  border-radius: 30px;
+  padding: 7px 14px;
+}
+main #mainLogin #mainLoginBox #hogwartsLogo {
+  filter: grayscale(1) invert(100%) opacity(8%);
+}
+main #mainRegister #mainRegisterBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main #mainRegister #mainRegisterBox #registerForm {
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main #mainRegister #mainRegisterBox #registerForm input {
+  margin-bottom: 25px;
+  border-radius: 15px;
+  padding: 5px;
+}
+main #mainRegister #mainRegisterBox #registerForm #registerButton {
+  border-radius: 30px;
+  padding: 7px 14px;
+}
+main #mainRegister #mainRegisterBox #registerBackground {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  z-index: -1;
+  height: 90%;
+  filter: contrast(115%);
+}
+
 .flexCenterCenter {
   display: flex;
   flex-direction: row;
@@ -611,7 +776,7 @@ html[data-theme="dark"] {
   align-items: flex-start;
 }
 
-.absoluteCenter {
+.absoluteCenter, main #mainLogin #mainLoginBox #hogwartsLogo {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -630,7 +795,7 @@ html[data-theme="dark"] {
   background-size: cover;
 }
 
-.pointer, .button {
+.pointer, .button, main #mainRooms #mainNav #roomLeft, main #mainRooms #mainNav #roomRight {
   cursor: pointer;
   transition: 0.3s;
 }
@@ -638,11 +803,19 @@ html[data-theme="dark"] {
 header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 0 5%;
 }
-header nav {
+header h1 {
+  font-family: Harry;
+  font-size: 6vw;
+  cursor: pointer;
+  z-index: 1;
+}
+header #headerNav {
+  position: absolute;
+  top: 5%;
+  right: 5%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -650,15 +823,21 @@ header nav {
   width: 120px;
 }
 
+.button {
+  z-index: 1;
+}
+
 .button:hover {
   transform: scale(110%);
+  filter: sepia(150%);
 }
 
 body {
-  color: white;
-  background-color: black;
-  font-family: Ubuntu;
-  cursor: url("../images/icons/wand-sparkles.svg"), auto;
+  color: var(--text);
+  background-color: var(--background);
+  font-family: Lumos;
+  font-size: 1.1rem;
+  cursor: url("../images/harrys+outline+potter+wand+icon-1320183610164113766_32.svg"), auto;
   overflow: hidden;
   height: 100dvh;
 }
@@ -666,6 +845,8 @@ body canvas {
   position: absolute;
   top: 0;
   left: 0;
+  filter: blur(2px);
+  pointer-events: none;
 }
 
 header {

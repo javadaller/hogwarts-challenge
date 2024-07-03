@@ -82,16 +82,25 @@ export function magicWand() {
             mouseVelocityY = e.clientY - lastMouseY;
             lastMouseX = e.clientX;
             lastMouseY = e.clientY;
+
+            // Get bounding rect of the canvas to translate coordinates
+            const rect = canvas.getBoundingClientRect();
         
             // Random offset for mouse velocity
             let randomOffsetX = (Math.random() - 0.5) * 100; // Adjust the multiplier for more or less randomness
             let randomOffsetY = (Math.random() - 0.5) * 100;
         
             // Create new star with modified velocity
-            stars.push(new Star(e.clientX, e.clientY, mouseVelocityX + randomOffsetX, mouseVelocityY + randomOffsetY));
+            stars.push(new Star(
+                e.clientX - rect.left, // Adjust for canvas position
+                e.clientY - rect.top,  // Adjust for canvas position
+                mouseVelocityX + randomOffsetX,
+                mouseVelocityY + randomOffsetY
+            ));
         }
         
-        canvas.addEventListener('mousemove', addStar);
+        // Listen for mousemove on the body
+        document.body.addEventListener('mousemove', addStar);
         
         let lastTime = 0;
         

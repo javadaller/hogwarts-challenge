@@ -1,10 +1,19 @@
 @use "../extends/_extends_dir";
 
 header {
-    @include flex(row,space-between,center);
-    margin: 0 5%;
+    @include flex(row,center,center);
 
-    nav {
+    h1 {
+        font-family: Harry;
+        font-size: 6vw;
+        cursor:pointer;
+        z-index: 1;
+    }
+
+    #headerNav {
+        position:absolute;
+        top:5%;
+        right:5%;
         @include flex(row,space-between,center);
         width:120px;
     }

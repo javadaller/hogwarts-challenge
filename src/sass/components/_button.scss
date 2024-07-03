@@ -1,6 +1,8 @@
 .button {
     @extend .pointer;
+    z-index: 1;
 }
 .button:hover {
     transform: scale(110%);
+    filter:sepia(150%);
 }

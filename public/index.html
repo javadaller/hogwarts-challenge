@@ -17,18 +17,95 @@
 
       <h1>Hogwarts Rooms</h1>
 
-      <nav>
-        <div class="button">sign up</div>
-        <div class="button">sign in</div>
+      <nav id="headerNav">
+        <div class="button" id="navSignUp">Register</div>
+        <div class="button" id="navSignIn">Login</div>
       </nav>
 
     </header>
 
     <main>
 
+      <!--* ROOMS---------------- -->
+      <section id="mainRooms">
+
+        <nav id="mainNav">
+          <img id="roomLeft" src="assets/images/1356-1684245204-554401384.webp" alt="arrowLeft">
+          <img id="selectedHouse" src="assets/images/gryffindor.jpg" alt="houses">
+          <img id="roomRight" src="assets/images/1356-1684245204-554401384.webp" alt="arrowRight">
+        </nav>
+
+      </section>
+
+      <!--* CHAT----------------- -->
+      <section id="mainChat">
+
+      </section>
+
+      <!--* LOGIN---------------- -->
+      <section id="mainLogin">
+        <div id="mainLoginBox">
+
+          <form id="loginForm">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="emailID" placeholder="email@example.com">
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="passwordID" placeholder="*************">
+
+            <input id="loginButton" class="button" type="button" value="Alohomora">
+          </form>
+
+          <img id="hogwartsLogo" src="assets/images/Hogwartscrest.webp" alt="hogwarts">
+
+        </div>
+      </section>
+
+      <!--* REGISTER------------- -->
+      <section id="mainRegister">
+        <div id="mainRegisterBox">
+
+          <form id="registerForm">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="nameID" placeholder="Your name">
+
+            <label for="emailRegister">E-mail</label>
+            <input type="email" name="emailRegister" id="emailRegisterID" placeholder="email@example.com">
+
+            <label for="moldu">Are you a muggle?</label>
+            <input type="checkbox" name="moldu" id="molduID">
+
+            <label for="passwordRegister">Choose a password</label>
+            <input type="password" name="passwordRegister" id="passwordRegisterID" placeholder="***********">
+
+            <label for="repeatPassword">Repeat your password</label>
+            <input type="password" name="repeatPassword" id="repeatPasswordID" placeholder="***********">
+
+            <input id="registerButton" class="button" type="button" value="Stupefy">
+          </form>
+
+          <img id="registerBackground" src="assets/images/background/hp1.jpg" alt="Harry Potter">
+
+        </div>
+      </section>
+
+      <!--* INFO----------------- -->
+      <section id="mainInfo">
+        <div>
+          <p id="info"></p>
+        </div>
+      </section>
+
     </main>
 
     <footer>
+      
+      <section id="socials">
+        <img class="button" id="linkedin" src="assets/images/icons/linkedin.svg" alt="linkedin">
+        <img class="button" id="github" src="assets/images/icons/github-line.svg" alt="github">
+      </section>
+
+      <p class="button" id="arnaudweb">Arnaud Van Acker 2024</p>
 
     </footer>
 

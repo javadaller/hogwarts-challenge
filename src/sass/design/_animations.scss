@@ -1,3 +1,35 @@
+.fadOut {
+    animation: fadeOut 0.3s linear forwards;
+    opacity: 1;
+}
+@keyframes fadeOut {
+    0% {
+        opacity:1;
+        filter:blur(0);
+    }
+    100% {
+        opacity:0;
+        filter:blur(10px);
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.3s linear forwards;
+    opacity:0;
+}
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+        filter:blur(10px);
+    }
+    100% {
+        opacity:1;
+        filter:blur(0);
+    }
+}
+
+
+
 .fromLeft {
     opacity:0;
     animation:fromLeft 0.5s 0.5s linear forwards;

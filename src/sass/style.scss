@@ -4,10 +4,11 @@
 @import "components/_components_dir";
 
 body {
-    color:white;
-    background-color: black;
-    font-family: Ubuntu;
-    cursor: url("../images/icons/wand-sparkles.svg"), auto;
+    color:var(--text);
+    background-color: var(--background);
+    font-family: Lumos;
+    font-size: 1.1rem;
+    cursor: url("../images/harrys+outline+potter+wand+icon-1320183610164113766_32.svg"), auto;
     overflow: hidden;
     height: 100dvh;
 
@@ -15,6 +16,8 @@ body {
         position: absolute;
         top: 0;
         left: 0;
+        filter:blur(2px);
+        pointer-events: none;
     }
 }
 

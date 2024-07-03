@@ -1,0 +1,13 @@
+footer {
+    @include flex(row,space-between,center);
+    margin: 0 5%;
+
+    #socials {
+        width:100px;
+        @include flex(row,space-between,center);
+
+        img {
+            height:40px;
+        }
+    }
+}

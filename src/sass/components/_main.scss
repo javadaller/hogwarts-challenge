@@ -1,0 +1,111 @@
+main {
+    @include box(100%);
+
+    section {
+        @include box(100%);
+    }
+
+    #mainRooms {
+
+        #mainNav {
+            @include box(100%,35%);
+            @include flex(row,center,center);
+            padding:0 5%;
+
+            #roomLeft {
+                height:70px;
+                transform: rotate(-90deg);
+                @extend .pointer;
+                z-index: 1;
+            }
+            #roomLeft:hover {
+                transform: rotate(-90deg) scale(110%);
+                filter:sepia(150%);
+            }
+
+            #selectedHouse {
+                height:100%;
+                margin:0 25px;
+                filter:invert(100%);
+            }
+
+            #roomRight {
+                height:70px;
+                transform: rotate(90deg);
+                @extend .pointer;
+                z-index: 1;
+            }
+            #roomRight:hover {
+                transform: rotate(90deg) scale(110%);
+                filter:sepia(150%);
+            }
+        }
+    }
+
+    #mainChat {
+
+    }
+
+    #mainLogin {
+        #mainLoginBox {
+            position: relative;
+            @include box(100%);
+            @include flex(column,center,center);
+
+            #loginForm {
+                @include box(400px);
+                @include flex(column,center,center);
+
+                input {
+                    z-index: 1;
+                    margin-bottom: 25px;
+                    border-radius: 15px;
+                    padding: 5px;
+                }
+
+                #loginButton {
+                    border-radius: 30px;
+                    padding: 7px 14px;
+                }
+            }
+
+            #hogwartsLogo {
+                @extend .absoluteCenter;
+                filter:grayscale(1) invert(100%) opacity(8%);
+            }
+        }
+    }
+
+    #mainRegister {
+        #mainRegisterBox {
+            position: relative;
+            @include box(100%);
+            @include flex(column,center,center);
+
+            #registerForm {
+                @include box(400px,auto);
+                @include flex(column,center,center);
+
+                input {
+                    margin-bottom: 25px;
+                    border-radius: 15px;
+                    padding: 5px;
+                }
+
+                #registerButton {
+                    border-radius: 30px;
+                    padding: 7px 14px;
+                }
+            }
+
+            #registerBackground {
+                position:absolute;
+                bottom: 0;
+                right:5%;
+                z-index: -1;
+                height:90%;
+                filter:contrast(115%);
+            }
+        }
+    }
+}
