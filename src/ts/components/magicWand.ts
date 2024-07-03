@@ -49,7 +49,7 @@ export function magicWand() {
                     console.error('Unable to get 2d context from canvas');
                     return;
                 }
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.fillStyle = `rgba(255, 235, 215, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();

@@ -605,7 +605,7 @@ footer #socials {
   align-items: center;
 }
 footer #socials img {
-  height: 40px;
+  height: 35px;
 }
 
 main {
@@ -829,7 +829,7 @@ header #headerNav {
 
 .button:hover {
   transform: scale(110%);
-  filter: sepia(150%);
+  filter: sepia(100%);
 }
 
 body {
