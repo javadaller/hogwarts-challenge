@@ -120,7 +120,7 @@ export function quickSort(arr) {
  * @param {number} max - maximum
  * @return {number} - random number
  */
-export function randomIntFromInterval(min, max) {
+export function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 //------------------------------------------------------------------------------------------
