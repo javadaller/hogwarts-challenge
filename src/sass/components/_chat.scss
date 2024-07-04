@@ -1,0 +1,27 @@
+#chatRoom {
+    @include box(100%);
+    position:relative;
+
+    #chatRoomContainer {
+        @include flex(column,space-between,center);
+        @include box(100%);
+
+        #chatInput {
+
+            textarea {
+                position: relative;
+                z-index: 2;
+            }
+
+            #chatLogo {
+                z-index: 0;
+                position:absolute;
+                top:0;
+                left:2%;
+                height:100%;
+                opacity:0.15;
+                filter:invert(100%);
+            }
+        }
+    }
+}

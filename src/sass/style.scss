@@ -6,8 +6,8 @@
 body {
     color:var(--text);
     background-color: var(--background);
-    font-family: Lumos;
-    font-size: 1.1rem;
+    font-family: Dum;
+    font-size: 1.2rem;
     cursor: url("../images/harrys+outline+potter+wand+icon-1320183610164113766_32.svg"), auto;
     overflow: hidden;
     height: 100dvh;
@@ -18,6 +18,22 @@ body {
         left: 0;
         filter:blur(2px);
         pointer-events: none;
+    }
+
+    #mainInfoVideo {
+        z-index: -1;
+        @include box(100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+
+        video {
+            @include box(100%);
+            object-fit: cover;
+            pointer-events: none;
+            filter:contrast(200%) brightness(250%) sepia(100%) blur(3px);
+        }
     }
 }
 

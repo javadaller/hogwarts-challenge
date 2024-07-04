@@ -1,11 +1,15 @@
 @use "../extends/_extends_dir";
 
 header {
-    @include flex(row,center,center);
+    @include flex(row,flex-start,center);
+    padding: 0 3%;
 
+    @include responsive(600px) {
+        @include flex(row,center,center);
+    }
     h1 {
         font-family: Harry;
-        font-size: 6vw;
+        font-size: 4rem;
         cursor:pointer;
         z-index: 1;
     }
@@ -14,7 +18,8 @@ header {
         position:absolute;
         top:5%;
         right:5%;
-        @include flex(row,space-between,center);
-        width:120px;
+        @include flex(row,flex-end,center);
+        width:125px;
+        gap:15px;
     }
 }

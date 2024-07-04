@@ -1,28 +1,36 @@
 import { switchTo } from "../helpers/switchTo.js"
+import { sleep } from "../helpers/functions.js"
 
 export function nav(): void {
 
     //*HEADER
-    const title = document.querySelector<HTMLElement>('h1');
+    const title = document.querySelector<HTMLElement>('h1')
     if (title) {
         title.addEventListener('click', () => {
             switchTo('mainRooms')
         });
     }
 
-    const signup = document.querySelector<HTMLDivElement>('#navSignUp');
+    const signup = document.querySelector<HTMLDivElement>('#navSignUp')
     if (signup) {
         signup.addEventListener('click', () => {
             switchTo('mainRegister')
         });
     }
 
-    const signin = document.querySelector<HTMLDivElement>('#navSignIn');
+    const signin = document.querySelector<HTMLDivElement>('#navSignIn')
     if (signin) {
         signin.addEventListener('click', () => {
             switchTo('mainLogin')
         });
     }
+
+    const logout: HTMLElement = document.querySelector('#logout')!
+    logout.style.display = 'none'
+
+    logout.addEventListener('click', () => {
+        loggedOut()
+    })
 
     //*HOUSES
     const houses: Array<string> = ['gryffindor.jpg','hufflepuff.jpg','ravenclaw.jpg','slytherin.jpg']
@@ -30,6 +38,7 @@ export function nav(): void {
     const houseImg = document.querySelector<HTMLImageElement>('#selectedHouse')
 
     if(houseImg) {
+        //LEFT RIGHT
         const left = document.querySelector<HTMLDivElement>('#roomLeft')
         if (left) {
             left.addEventListener('click', () => {
@@ -45,28 +54,67 @@ export function nav(): void {
                 houseImg.src = 'assets/images/'+houses[houseIndex]
             });
         }
+
+        //ENTER ROOM
+        const enter: HTMLElement = document.querySelector('#mainNavEnter')!
+
+        houseImg.addEventListener('mouseover', () => {
+            enter.style.display = 'block'
+        })
+
+        houseImg.addEventListener('mouseleave', () => {
+            enter.style.display = 'none'
+        })
+//
+        houseImg.addEventListener('click', () => {
+            const logo: HTMLImageElement = document.querySelector('#chatLogo')!
+            logo.src = houseImg.src
+            const chatRoom: HTMLElement = document.querySelector('#chatRoom')!
+            const house: string = houseImg.src.replace(/\.jpg$/i, '')
+            const houseId: string = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase()
+            chatRoom.setAttribute('houseName', houseId)
+            switchTo('chatRoom')
+        })
     }
     
 
     //*FOOTER
-    const linkedin = document.querySelector<HTMLDivElement>('#linkedin');
+    const linkedin = document.querySelector<HTMLDivElement>('#linkedin')
     if (linkedin) {
         linkedin.addEventListener('click', () => {
             open('https://www.linkedin.com/in/arnaud-van-acker/','_blank')
         });
     }
 
-    const github = document.querySelector<HTMLDivElement>('#github');
+    const github = document.querySelector<HTMLDivElement>('#github')
     if (github) {
         github.addEventListener('click', () => {
             open('https://github.com/javadaller','_blank')
         });
     }
 
-    const arnaudweb = document.querySelector<HTMLDivElement>('#arnaudweb');
+    const arnaudweb = document.querySelector<HTMLDivElement>('#arnaudweb')
     if (arnaudweb) {
         arnaudweb.addEventListener('click', () => {
             open('https://arnaudweb.be/','_blank')
         });
     }
+}
+
+//*LOGOUT
+async function loggedOut(): Promise<void> {
+    const signin: HTMLElement = document.querySelector('#navSignIn')!
+    signin.style.display = 'block'
+
+    const signup: HTMLElement = document.querySelector('#navSignUp')!
+    signup.style.display = 'block'
+
+    const logout: HTMLElement = document.querySelector('#logout')!
+    logout.style.display = 'none'
+
+    const display: HTMLElement = document.querySelector('#info')!
+    display.innerText = 'Logged out'
+    switchTo('mainInfo')
+    await sleep(1500)
+    switchTo('mainLogin')
 }

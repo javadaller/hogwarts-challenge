@@ -8,7 +8,7 @@ main {
     #mainRooms {
 
         #mainNav {
-            @include box(100%,35%);
+            @include box(100%);
             @include flex(row,center,center);
             padding:0 5%;
 
@@ -24,9 +24,14 @@ main {
             }
 
             #selectedHouse {
-                height:100%;
+                height:60%;
                 margin:0 25px;
                 filter:invert(100%);
+                @extend .pointer;
+            }
+            #selectedHouse:hover {
+                transform: scale(110%);
+                filter:invert(100%) sepia(100%);
             }
 
             #roomRight {
@@ -40,10 +45,16 @@ main {
                 filter:sepia(150%);
             }
         }
-    }
-
-    #mainChat {
-
+        
+        #mainNavEnter {
+            display:none;
+            font-size: 3rem;
+            font-family: Magic2;
+            position:absolute;
+            bottom: 12dvh;
+            left:50%;
+            transform:translateX(-50%);
+        }
     }
 
     #mainLogin {
@@ -87,9 +98,18 @@ main {
                 @include flex(column,center,center);
 
                 input {
-                    margin-bottom: 25px;
+                    margin-bottom: 10px;
                     border-radius: 15px;
                     padding: 5px;
+                }
+
+                #molduContainer {
+                    margin-bottom: 10px;
+                    @include flex(row,center,center);
+                }
+
+                select {
+                    margin-bottom: 10px;
                 }
 
                 #registerButton {
@@ -108,4 +128,16 @@ main {
             }
         }
     }
+
+    #mainInfo {
+        @include box(100%);
+        div {
+            @include box(100%);
+            @include flex(column,center,center);
+
+            #info {
+                font-size: 2rem;
+            }
+        }
+    } 
 }

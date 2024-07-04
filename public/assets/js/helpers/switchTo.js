@@ -1,11 +1,21 @@
 import { sleep } from "./functions.js";
 export async function switchTo(category) {
     const categories = Array.from(document.querySelector('main').children);
-    const main = document.querySelector('main');
-    if (main && categories) {
-        main.classList.remove('fadeIn');
-        main.classList.add('fadeOut');
-        await sleep(300);
+    const body = document.querySelector('body');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    if (body && categories) {
+        body.classList.remove('fadeIn');
+        body.classList.add('fadeOut');
+        await sleep(250);
+        if (category == 'mainInfo') {
+            header.style.display = 'none';
+            footer.style.display = 'none';
+        }
+        else {
+            header.style.display = 'flex';
+            footer.style.display = 'flex';
+        }
         for (let i = 0; i < categories.length; i++) {
             if (category != categories[i].id) {
                 categories[i].style.display = 'none';
@@ -14,7 +24,7 @@ export async function switchTo(category) {
                 categories[i].style.display = 'block';
             }
         }
-        main.classList.remove('fadeOut');
-        main.classList.add('fadeIn');
+        body.classList.remove('fadeOut');
+        body.classList.add('fadeIn');
     }
 }

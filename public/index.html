@@ -20,6 +20,7 @@
       <nav id="headerNav">
         <div class="button" id="navSignUp">Register</div>
         <div class="button" id="navSignIn">Login</div>
+        <div class="button" id="logout">Logout</div>
       </nav>
 
     </header>
@@ -35,11 +36,24 @@
           <img id="roomRight" src="assets/images/1356-1684245204-554401384.webp" alt="arrowRight">
         </nav>
 
+        <div id="mainNavEnter">Enter</div>
+        
       </section>
 
-      <!--* CHAT----------------- -->
-      <section id="mainChat">
+      <!--* CHAT ROOM -->
+      <section id="chatRoom" houseName="Gryffindor">
+        <div id="chatRoomContainer">
 
+          <h2>Chat Room</h2>
+
+          <div id="chatInput">
+            <textarea name="chatInputText" id="chatInputId" placeholder="Enter your message here...">
+            <input type="submit" value="Send">
+          </div>
+          
+          <img id="chatLogo" src="" alt="house logo">
+
+        </div>
       </section>
 
       <!--* LOGIN---------------- -->
@@ -72,8 +86,19 @@
             <label for="emailRegister">E-mail</label>
             <input type="email" name="emailRegister" id="emailRegisterID" placeholder="email@example.com">
 
-            <label for="moldu">Are you a muggle?</label>
-            <input type="checkbox" name="moldu" id="molduID">
+            <div id="molduContainer">
+              <label for="moldu">Are you a muggle?</label>
+              <input type="checkbox" name="moldu" id="molduID">
+            </div>
+
+            <label for="house">Choose your house</label>
+            <select name="house" id="houseID">
+              <option value="random">Random</option>
+              <option value="Gryffindor">Gryffindor</option>
+              <option value="Hufflepuff">Hufflepuff</option>
+              <option value="Ravenclaw">Ravenclaw</option>
+              <option value="Slytherin">Slytherin</option>
+            </select>
 
             <label for="passwordRegister">Choose a password</label>
             <input type="password" name="passwordRegister" id="passwordRegisterID" placeholder="***********">
@@ -91,10 +116,14 @@
 
       <!--* INFO----------------- -->
       <section id="mainInfo">
+
         <div>
           <p id="info"></p>
         </div>
+        
       </section>
+
+      
 
     </main>
 
@@ -109,7 +138,15 @@
 
     </footer>
 
+    <!--* PARTICLE FX CANVAS -->
     <canvas id="magicCanvas"></canvas>
+
+    <!--* BACKGROUND DUST FX -->
+    <div id="mainInfoVideo">
+      <video autoplay loop muted playsinline>
+          <source src="assets/images/video/dust1.mp4" type="video/mp4">
+      </video>
+    </div>
 
   </body>
 

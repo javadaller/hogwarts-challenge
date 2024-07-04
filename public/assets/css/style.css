@@ -329,15 +329,15 @@ template {
   display: none;
 }
 
-.fadOut {
-  animation: fadeOut 0.3s linear forwards;
+.fadeOut {
+  animation: fadeOut 0.2s linear forwards;
   opacity: 1;
 }
 
 @keyframes fadeOut {
   0% {
-    opacity: 1;
     filter: blur(0);
+    opacity: 1;
   }
   100% {
     opacity: 0;
@@ -345,7 +345,7 @@ template {
   }
 }
 .fadeIn {
-  animation: fadeIn 0.3s linear forwards;
+  animation: fadeIn 0.2s linear forwards;
   opacity: 0;
 }
 
@@ -547,6 +547,7 @@ template {
 :root {
   --background:black;
   --text:white;
+  --lightGrey:rgb(218, 218, 218);
 }
 
 /*html[data-theme="light"] {
@@ -583,12 +584,20 @@ html[data-theme="dark"] {
   src: url("../fonts/HARRYP__.TTF") format("truetype");
 }
 @font-face {
-  font-family: "Lumos";
-  src: url("../fonts/LUMOS.TTF") format("truetype");
-}
-@font-face {
   font-family: "Magic1";
   src: url("../fonts/MagicSchoolOne.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Magic2";
+  src: url("../fonts/MagicSchoolTwo.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Dum";
+  src: url("../fonts/dum2/dum2.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Dum2";
+  src: url("../fonts/dum2/dum1wide.ttf") format("truetype");
 }
 footer {
   display: flex;
@@ -618,7 +627,7 @@ main section {
 }
 main #mainRooms #mainNav {
   width: 100%;
-  height: 35%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -635,9 +644,13 @@ main #mainRooms #mainNav #roomLeft:hover {
   filter: sepia(150%);
 }
 main #mainRooms #mainNav #selectedHouse {
-  height: 100%;
+  height: 60%;
   margin: 0 25px;
   filter: invert(100%);
+}
+main #mainRooms #mainNav #selectedHouse:hover {
+  transform: scale(110%);
+  filter: invert(100%) sepia(100%);
 }
 main #mainRooms #mainNav #roomRight {
   height: 70px;
@@ -647,6 +660,15 @@ main #mainRooms #mainNav #roomRight {
 main #mainRooms #mainNav #roomRight:hover {
   transform: rotate(90deg) scale(110%);
   filter: sepia(150%);
+}
+main #mainRooms #mainNavEnter {
+  display: none;
+  font-size: 3rem;
+  font-family: Magic2;
+  position: absolute;
+  bottom: 12dvh;
+  left: 50%;
+  transform: translateX(-50%);
 }
 main #mainLogin #mainLoginBox {
   position: relative;
@@ -696,9 +718,19 @@ main #mainRegister #mainRegisterBox #registerForm {
   align-items: center;
 }
 main #mainRegister #mainRegisterBox #registerForm input {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   border-radius: 15px;
   padding: 5px;
+}
+main #mainRegister #mainRegisterBox #registerForm #molduContainer {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+main #mainRegister #mainRegisterBox #registerForm select {
+  margin-bottom: 10px;
 }
 main #mainRegister #mainRegisterBox #registerForm #registerButton {
   border-radius: 30px;
@@ -711,6 +743,21 @@ main #mainRegister #mainRegisterBox #registerBackground {
   z-index: -1;
   height: 90%;
   filter: contrast(115%);
+}
+main #mainInfo {
+  width: 100%;
+  height: 100%;
+}
+main #mainInfo div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main #mainInfo div #info {
+  font-size: 2rem;
 }
 
 .flexCenterCenter {
@@ -795,7 +842,7 @@ main #mainRegister #mainRegisterBox #registerBackground {
   background-size: cover;
 }
 
-.pointer, .button, main #mainRooms #mainNav #roomLeft, main #mainRooms #mainNav #roomRight {
+.pointer, .button, main #mainRooms #mainNav #roomLeft, main #mainRooms #mainNav #selectedHouse, main #mainRooms #mainNav #roomRight {
   cursor: pointer;
   transition: 0.3s;
 }
@@ -803,12 +850,21 @@ main #mainRegister #mainRegisterBox #registerBackground {
 header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding: 0 3%;
+}
+@media only screen and (min-width: 600px) {
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 header h1 {
   font-family: Harry;
-  font-size: 6vw;
+  font-size: 4rem;
   cursor: pointer;
   z-index: 1;
 }
@@ -818,9 +874,10 @@ header #headerNav {
   right: 5%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  width: 120px;
+  width: 125px;
+  gap: 15px;
 }
 
 .button {
@@ -832,11 +889,38 @@ header #headerNav {
   filter: sepia(100%);
 }
 
+#chatRoom {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#chatRoom #chatRoomContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#chatRoom #chatRoomContainer #chatInput textarea {
+  position: relative;
+  z-index: 2;
+}
+#chatRoom #chatRoomContainer #chatInput #chatLogo {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 2%;
+  height: 100%;
+  opacity: 0.15;
+  filter: invert(100%);
+}
+
 body {
   color: var(--text);
   background-color: var(--background);
-  font-family: Lumos;
-  font-size: 1.1rem;
+  font-family: Dum;
+  font-size: 1.2rem;
   cursor: url("../images/harrys+outline+potter+wand+icon-1320183610164113766_32.svg"), auto;
   overflow: hidden;
   height: 100dvh;
@@ -847,6 +931,22 @@ body canvas {
   left: 0;
   filter: blur(2px);
   pointer-events: none;
+}
+body #mainInfoVideo {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+body #mainInfoVideo video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+  filter: contrast(200%) brightness(250%) sepia(100%) blur(3px);
 }
 
 header {
