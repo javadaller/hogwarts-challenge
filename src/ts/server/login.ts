@@ -37,16 +37,16 @@ export function login(): void {
         const data = await response.json();
         if (response.ok) {
           //! login réussi
-            const signin: HTMLElement = document.querySelector('#navSignIn')!
-            signin.style.display = 'none'
+          localStorage.setItem('hogwards',data)
+          console.log(data)
+          const signin: HTMLElement = document.querySelector('#navSignIn')!
+          signin.style.display = 'none'
 
-            const signup: HTMLElement = document.querySelector('#navSignUp')!
-            signup.style.display = 'none'
+          const signup: HTMLElement = document.querySelector('#navSignUp')!
+          signup.style.display = 'none'
 
-            const logout: HTMLElement = document.querySelector('#logout')!
-            logout.style.display = 'block'
-
-
+          const logout: HTMLElement = document.querySelector('#logout')!
+          logout.style.display = 'block'
 
           const display: HTMLElement = document.querySelector('#info')!
           display.innerText = 'Successfully logged in'

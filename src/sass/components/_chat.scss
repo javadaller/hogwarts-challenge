@@ -1,16 +1,40 @@
-#chatRoom {
-    @include box(100%);
-    position:relative;
-
-    #chatRoomContainer {
-        @include flex(column,space-between,center);
+main {
+    #chatRoom {
+        display:none;
         @include box(100%);
 
-        #chatInput {
+        #chatRoomContainer {
+            @include flex(column,space-between,center);
+            @include box(100%);
 
-            textarea {
-                position: relative;
+            #chatDisplay {
+                @include box(100%,70%);
+
+            }
+
+            #chatInput {
                 z-index: 2;
+                @include box(100%,30%);
+                @include flex(column,space-between,center);
+
+                textarea {
+                    width: 350px;
+                    margin-bottom: 15px;
+                    height: auto;
+                    min-height: 100px;
+                    padding: 10px;
+                    font-size: 16px;
+                    border: 1px solid #ccc;
+                    border-radius: 15px;
+                    box-sizing: border-box;
+                    resize: vertical;
+                }
+
+                #chatSubmit {
+                    @extend .pointer;
+                    border-radius: 15px;
+                    padding:5px 10px
+                }
             }
 
             #chatLogo {

@@ -1,6 +1,7 @@
 import { switchTo } from "../helpers/switchTo.js";
 import { sleep } from "../helpers/functions.js";
 export function nav() {
+    switchTo('mainRooms');
     //*HEADER
     const title = document.querySelector('h1');
     if (title) {
@@ -55,13 +56,19 @@ export function nav() {
         });
         //
         houseImg.addEventListener('click', () => {
-            const logo = document.querySelector('#chatLogo');
-            logo.src = houseImg.src;
-            const chatRoom = document.querySelector('#chatRoom');
-            const house = houseImg.src.replace(/\.jpg$/i, '');
-            const houseId = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase();
-            chatRoom.setAttribute('houseName', houseId);
-            switchTo('chatRoom');
+            const storage = localStorage.getItem('hogwards');
+            if (storage) {
+                const logo = document.querySelector('#chatLogo');
+                logo.src = houseImg.src;
+                const chatRoom = document.querySelector('#chatRoom');
+                const house = houseImg.src.replace(/\.jpg$/i, '');
+                const houseId = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase();
+                chatRoom.setAttribute('houseName', houseId);
+                switchTo('chatRoom');
+            }
+            else {
+                switchTo('mainLogin');
+            }
         });
     }
     //*FOOTER
@@ -85,7 +92,8 @@ export function nav() {
     }
 }
 //*LOGOUT
-async function loggedOut() {
+export async function loggedOut() {
+    localStorage.removeItem('hogwards');
     const signin = document.querySelector('#navSignIn');
     signin.style.display = 'block';
     const signup = document.querySelector('#navSignUp');

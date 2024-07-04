@@ -3,6 +3,8 @@ import { sleep } from "../helpers/functions.js"
 
 export function nav(): void {
 
+    switchTo('mainRooms')
+
     //*HEADER
     const title = document.querySelector<HTMLElement>('h1')
     if (title) {
@@ -67,13 +69,19 @@ export function nav(): void {
         })
 //
         houseImg.addEventListener('click', () => {
-            const logo: HTMLImageElement = document.querySelector('#chatLogo')!
-            logo.src = houseImg.src
-            const chatRoom: HTMLElement = document.querySelector('#chatRoom')!
-            const house: string = houseImg.src.replace(/\.jpg$/i, '')
-            const houseId: string = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase()
-            chatRoom.setAttribute('houseName', houseId)
-            switchTo('chatRoom')
+            const storage = localStorage.getItem('hogwards')
+
+            if(storage) {
+                const logo: HTMLImageElement = document.querySelector('#chatLogo')!
+                logo.src = houseImg.src
+                const chatRoom: HTMLElement = document.querySelector('#chatRoom')!
+                const house: string = houseImg.src.replace(/\.jpg$/i, '')
+                const houseId: string = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase()
+                chatRoom.setAttribute('houseName', houseId)
+                switchTo('chatRoom')
+            } else {
+                switchTo('mainLogin')
+            }
         })
     }
     
@@ -102,7 +110,8 @@ export function nav(): void {
 }
 
 //*LOGOUT
-async function loggedOut(): Promise<void> {
+export async function loggedOut(): Promise<void> {
+    localStorage.removeItem('hogwards')
     const signin: HTMLElement = document.querySelector('#navSignIn')!
     signin.style.display = 'block'
 

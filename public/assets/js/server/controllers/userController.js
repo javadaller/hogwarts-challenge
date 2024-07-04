@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
             res.status(400).json({ message: 'Incorrect password' });
             return;
         }
-        res.status(200).json({ message: 'Login successful', userId: user._id });
+        res.status(200).json({ message: 'Login successful', userId: user._id, username: user.name });
     }
     catch (error) {
         console.error('Error logging in user:', error);
