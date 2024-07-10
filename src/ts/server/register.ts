@@ -12,6 +12,7 @@ export function register(): void {
       const data = {
         name: formData.get('name') as string,
         emailRegister: formData.get('emailRegister') as string,
+        houseRegister: formData.get('house') as string,
         passwordRegister: formData.get('passwordRegister') as string,
         repeatPassword: formData.get('repeatPassword') as string
       };
