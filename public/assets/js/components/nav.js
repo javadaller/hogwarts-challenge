@@ -1,6 +1,6 @@
 import { switchTo } from "../helpers/switchTo.js";
 import { sleep } from "../helpers/functions.js";
-import { initializeChat } from "../server/chat.js";
+import { register } from "../server/register.js";
 export function nav() {
     switchTo('mainRooms');
     //*HEADER
@@ -72,9 +72,14 @@ export function nav() {
         });
     }
     //*CHAT
-    const send = document.querySelector('#chatSubmit');
-    send.addEventListener('click', () => {
-        initializeChat('general', 'user1', 'User1');
+    //const send: HTMLInputElement = document.querySelector('#chatSubmit')!
+    // send.addEventListener('click', () => {
+    //          initializeChat('general', 'user1', 'User1')
+    // });
+    //*REGISTER
+    const registerSubmit = document.querySelector('#registerSubmit');
+    registerSubmit.addEventListener('click', () => {
+        register();
     });
     //*FOOTER
     const linkedin = document.querySelector('#linkedin');

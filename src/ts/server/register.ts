@@ -1,47 +1,42 @@
-import { switchTo } from "../helpers/switchTo.js"
-import { sleep } from "../helpers/functions.js"
+import { connectToDB } from "./db/connect.js";
+import { escapeHTML } from "../helpers/functions.js";
+import User from "./models/User.js"
 
-export function register(): void {
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('registerForm') as HTMLFormElement
-  
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault()
-  
-      const formData = new FormData(form)
-      const data = {
-        name: formData.get('name') as string,
-        emailRegister: formData.get('emailRegister') as string,
-        houseRegister: formData.get('house') as string,
-        passwordRegister: formData.get('passwordRegister') as string,
-        repeatPassword: formData.get('repeatPassword') as string
-      };
-  
-      try {
-        const response = await fetch('/api/users/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-  
-        const result = await response.json()
-        if (response.ok) {
-          //*INFO
-          const display: HTMLElement = document.querySelector('#info')!
-          display.innerText = 'New user added'
-          switchTo('mainInfo')
-          await sleep(2000)
-          switchTo('mainLogin')
-        } else {
-          alert(`Error: ${result.message}`)
+export async function register(): Promise<void> {
+    try {
+        connectToDB()
+
+        const nameInput: HTMLInputElement = document.querySelector('#nameID')!
+        const emailInput: HTMLInputElement = document.querySelector('#emailRegisterID')!
+        const houseInput: HTMLInputElement = document.querySelector('#houseID')!
+        const passwordInput: HTMLInputElement = document.querySelector('#passwordRegisterID')!
+        const passwordCheckInput: HTMLInputElement = document.querySelector('#repeatPasswordID')!
+
+        const name: string = escapeHTML(nameInput.value)
+        const email: string = escapeHTML(emailInput.value)
+        const house: string = escapeHTML(houseInput.value)
+        const password: string = escapeHTML(passwordInput.value)
+        const passwordCheck: string = escapeHTML(passwordCheckInput.value)
+
+        //check password
+        if(password != passwordCheck) {
+            passwordCheckInput.placeholder = "wrong password"
+            return
         }
-      } catch (error) {
-        console.error('Error submitting form:', error)
-        alert('An error occurred. Please try again later.')
-      }
-    });
-  });  
-}
 
+        const newUser = new User({
+            name,
+            email,
+            house,
+            password
+        })
+
+        const saveUser = await newUser.save()
+        console.log(saveUser,'ok')
+
+        
+
+    } catch(error) {
+        console.error('error registering user: ',error)
+    }
+}

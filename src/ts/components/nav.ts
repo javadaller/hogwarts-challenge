@@ -1,6 +1,6 @@
 import { switchTo } from "../helpers/switchTo.js"
 import { sleep } from "../helpers/functions.js"
-import { initializeChat } from "../server/chat.js"
+import { register } from "../server/register.js"
 
 export function nav(): void {
 
@@ -88,11 +88,18 @@ export function nav(): void {
 
     //*CHAT
 
-    const send: HTMLInputElement = document.querySelector('#chatSubmit')!
+    //const send: HTMLInputElement = document.querySelector('#chatSubmit')!
 
-    send.addEventListener('click', () => {
-             initializeChat('general', 'user1', 'User1')
-    });
+    // send.addEventListener('click', () => {
+    //          initializeChat('general', 'user1', 'User1')
+    // });
+
+    //*REGISTER
+    const registerSubmit: HTMLInputElement = document.querySelector('#registerSubmit')!
+
+    registerSubmit.addEventListener('click', () => {
+        register()
+    })
     
 
     //*FOOTER
