@@ -1,5 +1,6 @@
 import { switchTo } from "../helpers/switchTo.js";
 import { sleep } from "../helpers/functions.js";
+import { initializeChat } from "../server/chat.js";
 export function nav() {
     switchTo('mainRooms');
     //*HEADER
@@ -54,7 +55,6 @@ export function nav() {
         houseImg.addEventListener('mouseleave', () => {
             enter.style.display = 'none';
         });
-        //
         houseImg.addEventListener('click', () => {
             const storage = localStorage.getItem('hogwards');
             if (storage) {
@@ -71,6 +71,11 @@ export function nav() {
             }
         });
     }
+    //*CHAT
+    const send = document.querySelector('#chatSubmit');
+    send.addEventListener('click', () => {
+        initializeChat('general', 'user1', 'User1');
+    });
     //*FOOTER
     const linkedin = document.querySelector('#linkedin');
     if (linkedin) {

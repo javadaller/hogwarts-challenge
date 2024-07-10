@@ -1,5 +1,6 @@
 import { switchTo } from "../helpers/switchTo.js"
 import { sleep } from "../helpers/functions.js"
+import { initializeChat } from "../server/chat.js"
 
 export function nav(): void {
 
@@ -67,7 +68,7 @@ export function nav(): void {
         houseImg.addEventListener('mouseleave', () => {
             enter.style.display = 'none'
         })
-//
+
         houseImg.addEventListener('click', () => {
             const storage = localStorage.getItem('hogwards')
 
@@ -84,6 +85,14 @@ export function nav(): void {
             }
         })
     }
+
+    //*CHAT
+
+    const send: HTMLInputElement = document.querySelector('#chatSubmit')!
+
+    send.addEventListener('click', () => {
+             initializeChat('general', 'user1', 'User1')
+    });
     
 
     //*FOOTER

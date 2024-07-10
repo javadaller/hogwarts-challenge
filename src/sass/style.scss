@@ -26,6 +26,8 @@ body {
         position: absolute;
         top: 0;
         left: 0;
+        opacity:0.2;
+        filter:contrast(200%) brightness(250%) sepia(100%) blur(3px);
         
 
         video {

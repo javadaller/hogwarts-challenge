@@ -38,7 +38,7 @@ export function login(): void {
         if (response.ok) {
           //! login réussi
           localStorage.setItem('hogwards',data)
-          console.log(data)
+          console.log(data.userId)
           const signin: HTMLElement = document.querySelector('#navSignIn')!
           signin.style.display = 'none'
 
