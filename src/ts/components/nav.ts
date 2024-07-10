@@ -1,8 +1,7 @@
 import { switchTo } from "../helpers/switchTo.js"
 import { sleep } from "../helpers/functions.js"
-import { initializeChat } from "../server/chat.js"
 
-export function nav(): void {
+export async function nav(): Promise<void> {
 
     switchTo('mainRooms')
 
@@ -69,17 +68,30 @@ export function nav(): void {
             enter.style.display = 'none'
         })
 
-        houseImg.addEventListener('click', () => {
-            const storage = localStorage.getItem('hogwards')
+        houseImg.addEventListener('click', async () => {
+            const storage = JSON.parse(localStorage.getItem('hogwards')!)
+            console.log(storage)
 
             if(storage) {
-                const logo: HTMLImageElement = document.querySelector('#chatLogo')!
-                logo.src = houseImg.src
                 const chatRoom: HTMLElement = document.querySelector('#chatRoom')!
-                const house: string = houseImg.src.replace(/\.jpg$/i, '')
+                const house: string = houses[houseIndex].replace(/\.jpg$/i, '')
                 const houseId: string = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase()
-                chatRoom.setAttribute('houseName', houseId)
-                switchTo('chatRoom')
+
+                console.log(houseId)
+
+                if(storage.house == houseId) {
+                    const logo: HTMLImageElement = document.querySelector('#chatLogo')!
+                    logo.src = houseImg.src
+                
+                    chatRoom.setAttribute('houseName', houseId)
+                    switchTo('chatRoom')
+                } else {
+                    const logo: HTMLImageElement = document.querySelector('#chatLogo')!
+                    logo.classList.add('shake')
+                    await sleep(300)
+                    logo.classList.remove('shake')
+                }
+                
             } else {
                 switchTo('mainLogin')
             }
@@ -87,12 +99,6 @@ export function nav(): void {
     }
 
     //*CHAT
-
-    const send: HTMLInputElement = document.querySelector('#chatSubmit')!
-
-    send.addEventListener('click', () => {
-             initializeChat('general', 'user1', 'User1')
-    });
     
 
     //*FOOTER

@@ -1,16 +1,24 @@
 import { Request, Response } from 'express';
 import { connectToDatabase } from '../db/db.js';
+import { randomInt } from '../../helpers/functions.js';
 import bcrypt from 'bcrypt';
 
 const saltRounds = 10;
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { name, emailRegister, houseRegister, passwordRegister, repeatPassword } = req.body;
+    let { name, emailRegister, houseRegister, passwordRegister, repeatPassword } = req.body;
 
     if (!name || !emailRegister || !houseRegister || !passwordRegister || passwordRegister !== repeatPassword) {
       res.status(400).json({ message: 'Invalid input' });
       return;
+    }
+
+    //Random House
+    if (houseRegister == 'Random') {
+      const index: number = randomInt(0,3)
+      const array: Array<string> = ['Gryffindor','Hufflepuff','Ravenclaw','Slytherin']
+      houseRegister = array[index]
     }
 
     const db = await connectToDatabase();
@@ -64,7 +72,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    res.status(200).json({ message: 'Login successful', userId: user._id, username: user.name });
+    res.status(200).json({ userId: user._id, house: user.house });
   } catch (error) {
     console.error('Error logging in user:', error);
     res.status(500).json({ message: 'Internal server error' });

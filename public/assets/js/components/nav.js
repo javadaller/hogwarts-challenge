@@ -1,7 +1,6 @@
 import { switchTo } from "../helpers/switchTo.js";
 import { sleep } from "../helpers/functions.js";
-import { initializeChat } from "../server/chat.js";
-export function nav() {
+export async function nav() {
     switchTo('mainRooms');
     //*HEADER
     const title = document.querySelector('h1');
@@ -55,16 +54,26 @@ export function nav() {
         houseImg.addEventListener('mouseleave', () => {
             enter.style.display = 'none';
         });
-        houseImg.addEventListener('click', () => {
-            const storage = localStorage.getItem('hogwards');
+        houseImg.addEventListener('click', async () => {
+            const storage = JSON.parse(localStorage.getItem('hogwards'));
+            console.log(storage);
             if (storage) {
-                const logo = document.querySelector('#chatLogo');
-                logo.src = houseImg.src;
                 const chatRoom = document.querySelector('#chatRoom');
-                const house = houseImg.src.replace(/\.jpg$/i, '');
+                const house = houses[houseIndex].replace(/\.jpg$/i, '');
                 const houseId = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase();
-                chatRoom.setAttribute('houseName', houseId);
-                switchTo('chatRoom');
+                console.log(houseId);
+                if (storage.house == houseId) {
+                    const logo = document.querySelector('#chatLogo');
+                    logo.src = houseImg.src;
+                    chatRoom.setAttribute('houseName', houseId);
+                    switchTo('chatRoom');
+                }
+                else {
+                    const logo = document.querySelector('#chatLogo');
+                    logo.classList.add('shake');
+                    await sleep(300);
+                    logo.classList.remove('shake');
+                }
             }
             else {
                 switchTo('mainLogin');
@@ -72,10 +81,6 @@ export function nav() {
         });
     }
     //*CHAT
-    const send = document.querySelector('#chatSubmit');
-    send.addEventListener('click', () => {
-        initializeChat('general', 'user1', 'User1');
-    });
     //*FOOTER
     const linkedin = document.querySelector('#linkedin');
     if (linkedin) {
