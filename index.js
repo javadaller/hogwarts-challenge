@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { connectToDatabase } from './public/assets/js/server/db/db.js';
+import { connectToDB } from './public/assets/js/server/db/connect.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +16,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-connectToDatabase().then(() => {
+connectToDB().then(() => {
     app.listen(PORT, () => {
         console.log(`Serveur démarré sur http://localhost:${PORT}`);
     });

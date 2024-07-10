@@ -1,5 +1,6 @@
-import { connectToDB } from "./db/connect.js";
-import { escapeHTML } from "../helpers/functions.js";
+import { connectToDB } from "./db/connect.js"
+import { escapeHTML, sleep } from "../helpers/functions.js"
+import { switchTo } from "../helpers/switchTo.js"
 import User from "./models/User.js"
 
 export async function register(): Promise<void> {
@@ -34,7 +35,12 @@ export async function register(): Promise<void> {
         const saveUser = await newUser.save()
         console.log(saveUser,'ok')
 
-        
+        //*INFO
+        const display: HTMLElement = document.querySelector('#info')!
+        display.innerText = 'New user added'
+        switchTo('mainInfo')
+        await sleep(2000)
+        switchTo('mainLogin')
 
     } catch(error) {
         console.error('error registering user: ',error)
