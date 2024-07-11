@@ -1,50 +1,44 @@
 import { Request, Response } from 'express';
+import { Message } from '../models/messageModel';
 import { connectToDatabase } from '../db/db.js';
 
-export const postMessage = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { content, posterName, posterId, chatName } = req.body;
+export const postMessage = async (req: Request, res: Response) => {
+  const { name, date, content, house } = req.body as Message;
 
-        if (!content || !posterName || !posterId || !chatName) {
-            res.status(400).json({ message: 'All fields are required.' });
-            return;
-        }
+  if (!name || !date || !content || !house) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
 
-        const db = await connectToDatabase();
-        const messagesCollection = db.collection('messages');
+  try {
+    const db = await connectToDatabase();
+    const collection = db.collection('messages');
+    
+    const newMessage = { name, date, content, house };
+    await collection.insertOne(newMessage);
 
-        const newMessage = {
-            content,
-            timestamp: new Date(),
-            posterName,
-            posterId,
-            chatName,
-        };
-
-        const result = await messagesCollection.insertOne(newMessage);
-        
-        if (result.acknowledged) {
-            res.status(201).json({ ...newMessage, _id: result.insertedId });
-        } else {
-            res.status(500).json({ message: 'Failed to insert message' });
-        }
-    } catch (error) {
-        console.error('Error posting message:', error);
-        res.status(500).json({ message: 'Internal server error', error });
-    }
+    res.status(201).json({ message: 'Message sent successfully', data: { name, date, content, house } });
+  } catch (error) {
+    console.error('Error creating message:', error);
+    res.status(500).json({ message: 'An error occurred while sending the message' });
+  }
 };
 
-export const getMessages = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { chatName } = req.params;
-
-        const db = await connectToDatabase();
-        const messagesCollection = db.collection('messages');
-
-        const messages = await messagesCollection.find({ chatName }).sort({ timestamp: 1 }).toArray();
-        res.status(200).json(messages);
-    } catch (error) {
-        console.error('Error fetching messages:', error);
-        res.status(500).json({ message: 'Internal server error', error });
+export const getMessages = async (req: Request, res: Response) => {
+    const { house } = req.query;
+  
+    if (!house) {
+      return res.status(400).json({ message: 'House parameter is required' });
     }
-};
+  
+    try {
+      const db = await connectToDatabase();
+      const collection = db.collection('messages');
+      
+      const messages = await collection.find({ house }).toArray();
+  
+      res.status(200).json({ message: 'Messages successfully loaded', data: messages });
+    } catch (error) {
+      console.error('Error getting messages:', error);
+      res.status(500).json({ message: 'An error occurred while getting messages' });
+    }
+  };

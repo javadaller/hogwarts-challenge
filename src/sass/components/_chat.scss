@@ -8,20 +8,29 @@ main {
             @include box(100%);
 
             #chatDisplay {
-                @include box(100%,70%);
+                z-index: 1;
+                @include box(70%,80%);
+                @include flex(column,center,center);
+                overflow-y: scroll;
+
+                .chatParent {
+                    @include box(100%,75%);
+                    @include flex(row,space-between,center);
+                    flex-wrap: wrap;
+                }
 
             }
 
             #chatInput {
                 z-index: 2;
-                @include box(100%,30%);
+                @include box(100%,15%);
                 @include flex(column,space-between,center);
 
                 textarea {
                     width: 350px;
                     margin-bottom: 15px;
                     height: auto;
-                    min-height: 100px;
+                    min-height: 50px;
                     padding: 10px;
                     font-size: 16px;
                     border: 1px solid #ccc;
@@ -43,7 +52,7 @@ main {
                 top:0;
                 left:2%;
                 height:100%;
-                opacity:0.15;
+                opacity:0.05;
                 filter:invert(100%);
             }
         }

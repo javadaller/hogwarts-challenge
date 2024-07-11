@@ -932,13 +932,28 @@ main #chatRoom #chatRoomContainer {
   height: 100%;
 }
 main #chatRoom #chatRoomContainer #chatDisplay {
+  z-index: 1;
+  width: 70%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
+main #chatRoom #chatRoomContainer #chatDisplay .chatParent {
   width: 100%;
-  height: 70%;
+  height: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 main #chatRoom #chatRoomContainer #chatInput {
   z-index: 2;
   width: 100%;
-  height: 30%;
+  height: 15%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -948,7 +963,7 @@ main #chatRoom #chatRoomContainer #chatInput textarea {
   width: 350px;
   margin-bottom: 15px;
   height: auto;
-  min-height: 100px;
+  min-height: 50px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -966,7 +981,7 @@ main #chatRoom #chatRoomContainer #chatLogo {
   top: 0;
   left: 2%;
   height: 100%;
-  opacity: 0.15;
+  opacity: 0.05;
   filter: invert(100%);
 }
 

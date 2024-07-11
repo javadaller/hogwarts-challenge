@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 import { postMessage, getMessages } from '../controllers/messageController.js';
-const router = Router();
-router.post('/messages', postMessage);
-router.get('/messages/:chatName', getMessages);
+const router = express.Router();
+router.post('/postMessage', postMessage);
+router.get('/getMessages', getMessages);
 export default router;

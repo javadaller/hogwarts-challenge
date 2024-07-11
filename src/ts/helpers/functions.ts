@@ -12,42 +12,15 @@ export function sleep(ms:number): Promise<unknown> {
 **create a container of your choice, with optionnal content and classe(s)
 * @param {string} type - container type
 * @param {Element} parent - the parent container
-* @param {string} content - innerHTML
 * @param {string} className - classname(s)
-* @param {string} setValue - value
-* @param {URL} setSrc - source
 * @return {Element} - the new element
 */
 
-export function createDiv(type: string,parent: HTMLElement,content: string,className: string,setValue: string,setSrc: URL): HTMLElement {
-  const newDiv: HTMLElement = document.createElement(type);
-
-  if (content !== null) {
-    newDiv.innerHTML = content;
-  }
-
-  if (className !== null) {
-    newDiv.classList.add(className);
-  }
-
-  if (typeof setValue !== null) {
-    if (newDiv instanceof HTMLInputElement || newDiv instanceof HTMLTextAreaElement || newDiv instanceof HTMLSelectElement) {
-      newDiv.value = setValue;
-    } else {
-      newDiv.textContent = setValue;
-    }
-  }
-
-  if (setSrc !== null) {
-    if (newDiv instanceof HTMLImageElement) {
-      newDiv.src = setSrc.toString();
-    } else {
-      newDiv.appendChild(document.createTextNode(setSrc.toString()));
-    }
-  }
-
-  parent.appendChild(newDiv);
-  return newDiv;
+export function createDiv(type: string,parent: HTMLElement,className: string): HTMLElement {
+  const newDiv: HTMLElement = document.createElement(type)
+  parent.appendChild(newDiv)
+  newDiv.classList.add(className)
+  return newDiv
 }
 
 
