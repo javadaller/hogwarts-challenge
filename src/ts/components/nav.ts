@@ -85,6 +85,8 @@ export async function nav(): Promise<void> {
                 
                     chatRoom.setAttribute('houseName', houseId)
                     switchTo('chatRoom')
+
+
                 } else {
                     const logo: HTMLImageElement = document.querySelector('#chatLogo')!
                     logo.classList.add('shake')
