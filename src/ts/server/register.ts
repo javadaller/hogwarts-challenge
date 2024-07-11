@@ -1,7 +1,7 @@
 import { connectToDB } from "./db/connect.js"
 import { escapeHTML, sleep } from "../helpers/functions.js"
 import { switchTo } from "../helpers/switchTo.js"
-import User from "./models/User.js"
+import User from "./models/User.js" 
 
 export async function register(): Promise<void> {
     try {

@@ -2,13 +2,15 @@
   "name": "hogwarts-challenge",
   "private": true,
   "version": "0.0.0",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc",
     "preview": "vite preview",
     "build:server": "tsc",
     "start:server": "node index.js",
+    "start": "node index.js",
     "build:client": "vite build"
   },
   "devDependencies": {
