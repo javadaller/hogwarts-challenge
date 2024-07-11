@@ -5,6 +5,8 @@ import { register } from "./server/register.js"
 import { login } from "./server/login.js"
 import { postMessage } from "./server/messages.js"
 
+localStorage.removeItem('hogwarts')
+
 nav()
 magicWand()
 cats()
