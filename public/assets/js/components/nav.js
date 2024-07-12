@@ -55,13 +55,11 @@ export async function nav() {
             enter.style.display = 'none';
         });
         houseImg.addEventListener('click', async () => {
-            const storage = JSON.parse(localStorage.getItem('hogwards'));
-            console.log(storage);
+            const storage = JSON.parse(localStorage.getItem('hogwarts'));
             if (storage) {
                 const chatRoom = document.querySelector('#chatRoom');
                 const house = houses[houseIndex].replace(/\.jpg$/i, '');
                 const houseId = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase();
-                console.log(houseId);
                 if (storage.house == houseId) {
                     const logo = document.querySelector('#chatLogo');
                     logo.src = houseImg.src;

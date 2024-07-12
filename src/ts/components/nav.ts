@@ -69,15 +69,12 @@ export async function nav(): Promise<void> {
         })
 
         houseImg.addEventListener('click', async () => {
-            const storage = JSON.parse(localStorage.getItem('hogwards')!)
-            console.log(storage)
+            const storage = JSON.parse(localStorage.getItem('hogwarts')!)
 
             if(storage) {
                 const chatRoom: HTMLElement = document.querySelector('#chatRoom')!
                 const house: string = houses[houseIndex].replace(/\.jpg$/i, '')
                 const houseId: string = house.charAt(0).toUpperCase() + house.slice(1).toLowerCase()
-
-                console.log(houseId)
 
                 if(storage.house == houseId) {
                     const logo: HTMLImageElement = document.querySelector('#chatLogo')!

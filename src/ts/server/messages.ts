@@ -1,4 +1,4 @@
-import { escapeHTML, createDiv } from "../helpers/functions.js"
+import { escapeHTML, createDiv, sleep } from "../helpers/functions.js"
 
 export async function postMessage(): Promise<void> {
     const sendButton: HTMLInputElement | null = document.querySelector('#chatSubmit')
@@ -10,8 +10,9 @@ export async function postMessage(): Promise<void> {
         //*Get messages
         roomImg.addEventListener('click', async (event) => {
             event.preventDefault()
-            const userJSON = JSON.parse(localStorage.getItem('hogwards')!)
+            const userJSON = JSON.parse(localStorage.getItem('hogwarts')!)
             const room: HTMLElement = document.querySelector('#chatRoom')!
+            await sleep(100)
             const roomHouse = room.getAttribute('houseName')
 
             if (userJSON && room && roomHouse) {
