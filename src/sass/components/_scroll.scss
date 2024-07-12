@@ -1,0 +1,10 @@
+#chatDisplay::-webkit-scrollbar {
+    width: 8px;
+}
+#chatDisplay::-webkit-scrollbar-track {
+    background: black;
+}
+#chatDisplay::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+}

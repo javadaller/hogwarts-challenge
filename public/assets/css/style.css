@@ -940,6 +940,8 @@ main #chatRoom #chatRoomContainer #chatDisplay {
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 10px;
 }
 main #chatRoom #chatRoomContainer #chatDisplay .chatParent {
   width: 100%;
@@ -949,6 +951,23 @@ main #chatRoom #chatRoomContainer #chatDisplay .chatParent {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  border: solid 1px rgba(255, 255, 255, 0.205);
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 3px;
+}
+main #chatRoom #chatRoomContainer #chatDisplay .chatParent .chatName {
+  color: rgb(255, 248, 184);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+main #chatRoom #chatRoomContainer #chatDisplay .chatParent .chatMessage {
+  font-size: 1.4rem;
+  margin: 0px 10px;
+  white-space: pre-wrap;
+}
+main #chatRoom #chatRoomContainer #chatDisplay .chatParent .chatDate {
+  font-size: 0.8rem;
 }
 main #chatRoom #chatRoomContainer #chatInput {
   z-index: 2;
@@ -983,6 +1002,19 @@ main #chatRoom #chatRoomContainer #chatLogo {
   height: 100%;
   opacity: 0.05;
   filter: invert(100%);
+}
+
+#chatDisplay::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chatDisplay::-webkit-scrollbar-track {
+  background: black;
+}
+
+#chatDisplay::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
 }
 
 body {

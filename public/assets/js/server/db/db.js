@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
-// Charger les variables d'environnement depuis le fichier .env
 dotenv.config();
 const uri = process.env.MONGO_URI;
 const dbName = process.env.DB_NAME;

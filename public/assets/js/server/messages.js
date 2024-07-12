@@ -100,9 +100,7 @@ function chatDisplay(data) {
         content.innerText = data[i].content;
         const date = createDiv('div', message, 'chatDate');
         const dateContent = formatDateAndTime(data[i].date);
-        const dateStringify = JSON.stringify(dateContent);
-        console.log(dateStringify);
-        date.innerText = dateStringify[0] + ' ' + dateStringify[1];
+        date.innerText = dateContent[0] + ' ' + dateContent[1];
     }
 }
 function formatDateAndTime(dateTimeString) {
@@ -114,8 +112,5 @@ function formatDateAndTime(dateTimeString) {
     const hours = dateObj.getHours();
     const minutes = dateObj.getMinutes();
     const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    return {
-        date: formattedDate,
-        time: formattedTime
-    };
+    return [formattedDate, formattedTime];
 }

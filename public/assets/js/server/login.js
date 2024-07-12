@@ -29,7 +29,6 @@ export function login() {
             });
             const data = await response.json();
             if (response.ok) {
-                //! login réussi
                 localStorage.setItem('hogwarts', JSON.stringify(data));
                 const signin = document.querySelector('#navSignIn');
                 signin.style.display = 'none';
